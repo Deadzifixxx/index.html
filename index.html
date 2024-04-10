@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronomètre</title>
+    <style>
+        body {
+            background-color: black;
+            color: red;
+            font-size: 200px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30vh;
+        }
+        #chrono {
+            border: 5px solid red; /* Bordure rouge */
+            padding: 20px; /* Espacement intérieur */
+            display: inline-block; /* Pour ajuster la largeur du cadre à celle du texte */
+        }
+    </style>
+</head>
+<body>
+    <div id="chrono">30 : 00</div>
+
+    <script>
+        var timer = setInterval(function() {
+            var time = document.getElementById("chrono").innerHTML.split(" : ");
+            var minutes = parseInt(time[0]);
+            var seconds = parseInt(time[1]);
+            
+            if (minutes == 0 && seconds == 0) {
+                clearInterval(timer);
+                alert("Temps écoulé !");
+            } else if (seconds == 0) {
+                minutes--;
+                seconds = 59;
+            } else {
+                seconds--;
+            }
+
+            document.getElementById("chrono").innerHTML = (minutes < 10 ? "0" + minutes : minutes) + " : " + (seconds < 10 ? "0" + seconds : seconds);
+        }, 1000);
+    </script>
+</body>
+</html>
